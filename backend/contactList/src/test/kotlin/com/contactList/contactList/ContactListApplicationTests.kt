@@ -1,10 +1,10 @@
-package com.contactList.contactlist
+package com.contactList.contactList
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class ContactlistApplicationTests {
+class ContactListApplicationTests {
 
 	@Test
 	fun contextLoads() {
