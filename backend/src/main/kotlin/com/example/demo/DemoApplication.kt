@@ -1,11 +1,11 @@
-package com.contactList.contactList
+package com.example.demo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ContactListApplication
+class DemoApplication
 
 fun main(args: Array<String>) {
-	runApplication<ContactListApplication>(*args)
+	runApplication<DemoApplication>(*args)
 }
