@@ -19,7 +19,7 @@ class CorsConfig : WebMvcConfigurer {
 class WebConfig : WebMvcConfigurer {
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
-        registry.addResourceHandler("/uploads/**")
-            .addResourceLocations("file:uploads/")
+        registry.addResourceHandler("/backend/uploads/**")
+            .addResourceLocations("file:backend/uploads/")
     }
 }
