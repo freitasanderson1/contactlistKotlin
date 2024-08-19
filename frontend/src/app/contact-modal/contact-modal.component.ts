@@ -54,9 +54,7 @@ export class ContactModalComponent {
       ? this.contatoService.updateContato(this.contact.id, this.contact)
       : this.contatoService.addContato(this.contact);
 
-    request$.pipe(
-      first()
-    ).subscribe({
+    request$.subscribe({
       next: response => {
         this.dialogRef.close(this.contact);
       },

@@ -8,6 +8,10 @@
 
   <li *ngFor="let contato of contatos">
     <div class="contact-card">
+      <div>
+        <span style="padding: 1rem;"><strong>{{contato.id}}</strong></span>
+      </div>
+
       <img [src]="contato.imageUrl()" alt="{{ contato.nome }}" class="contact-image">
       <div class="contact-details">
         <h2>{{ contato.nome }}</h2>

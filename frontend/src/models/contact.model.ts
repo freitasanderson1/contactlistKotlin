@@ -19,8 +19,10 @@ export interface Contato {
     ) { }
 
     imageUrl(): string {
-        var imgName = ''
-        this.imagem?.includes('backend/uploads/') ? imgName = this.imagem.replace('backend/uploads/',''): imgName = ''
-      return `http://localhost:4200/media/${imgName}`;
+      if(this.imagem?.includes('backend/uploads/')){
+        return `media/${this.imagem.replace('backend/uploads/','')}`
+      } else{
+        return ''
+      }
     }
   }

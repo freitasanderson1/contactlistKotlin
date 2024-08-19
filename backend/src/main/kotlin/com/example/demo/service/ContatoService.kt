@@ -10,7 +10,7 @@ import java.time.LocalDate
 class ContatoService(private val contatoRepository: ContatoRepository) {
 
     fun getAllContatos(): List<Contato> {
-        return contatoRepository.findAll()
+        return contatoRepository.findAll().sortedBy { it.nome }
     }
 
     fun getContatoByParam(search: String?): List<Contato> {
