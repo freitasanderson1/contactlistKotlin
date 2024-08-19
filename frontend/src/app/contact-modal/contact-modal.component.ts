@@ -22,6 +22,7 @@ export class ContactModalComponent {
   imageUrl: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
   isSaving = false;
+  imgSrc = '';
 
   constructor(
     private contatoService: ContatoService,
@@ -29,43 +30,44 @@ export class ContactModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.contact = data.contact || {};
+
+    this.contact.imagem ? this.imgSrc = this.contact.imageUrl(): this.imgSrc = '';
   }
 
-  onSave() {
+  onSave(event: Event) {
+    event.stopPropagation();
+
     if (this.isSaving) {
       return;
     }
 
     this.isSaving = true;
 
-    if (this.contact.imagem) {
-      this.contact.imagem = this.selectedFile;
+
+    if(this.selectedFile){
+      this.contact.imagem = this.selectedFile
+    } else {
+
     }
 
-    if (this.contact.id) {
-      this.contatoService.updateContato(this.contact.id, this.contact).pipe(
-        first()
-      ).subscribe(response => {
+    const request$ = this.contact.id
+      ? this.contatoService.updateContato(this.contact.id, this.contact)
+      : this.contatoService.addContato(this.contact);
+
+    request$.pipe(
+      first()
+    ).subscribe({
+      next: response => {
         this.dialogRef.close(this.contact);
-        this.isSaving = false;
-      }, error => {
-        console.error('Erro ao atualizar contato:', error);
-        this.isSaving = false;
-      });
-    } else {
-      this.contatoService.addContato(this.contact).pipe(
-        first()
-      ).subscribe(response => {
-        this.dialogRef.close(this.contact);
-        this.isSaving = false;
-      }, error => {
-        console.error('Erro ao atualizar contato:', error);
-        this.isSaving = false;
-      });
-    }
+      },
+      error: error => {
+        console.error('Erro ao salvar contato:', error);
+      }
+    });
   }
 
-  onCancel() {
+  onCancel(event: Event) {
+    event.stopPropagation();
     this.dialogRef.close();
   }
 
@@ -76,7 +78,7 @@ export class ContactModalComponent {
     if (this.selectedFile) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.contact.imagem = e.target.result;
+        this.imgSrc = e.target.result;
       };
       reader.readAsDataURL(this.selectedFile);
     }

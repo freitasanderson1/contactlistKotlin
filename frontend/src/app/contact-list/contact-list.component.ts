@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContatoService } from '../../services/contact.service';
 import { ContatoMethods } from '../../models/contact.model';
 import { ContactModalComponent } from '../contact-modal/contact-modal.component';
+import { ContactModalDeleteComponent} from "../contact-modal-delete/contact-modal-delete.component";
 
 @Component({
   selector: 'app-contact-list',
@@ -44,13 +45,19 @@ export class ContactListComponent{
   search(): void {
     this.loadContatos(this.searchQuery);
   }
-
-  deleteContact(id: number) {
-    this.contatoService.deleteContato(id).subscribe(response => {
-      this.loadContatos()
-    }, error => {
-      console.error('Erro ao criar contato:', error);
-      this.loadContatos()
+  openDeleteDialog(contact?: ContatoMethods): void {
+    const dialogRef = this.dialog.open(ContactModalDeleteComponent, {
+      width: '500px',
+      data: { contact: contact }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.id) {
+          this.contatoService.updateContato(result.id, result).subscribe(() => this.loadContatos());
+        } else {
+          this.contatoService.addContato(result).subscribe(() => this.loadContatos());
+        }
+      }
     });
   }
   openModal(contact?: ContatoMethods): void {
@@ -70,7 +77,6 @@ export class ContactListComponent{
     });
   }
   editContato(contato: any) {
-    contato.imagem = contato.imageUrl()
     const dialogRef = this.dialog.open(ContactModalComponent, {
       data: { contact: contato },
       width: '500px',
@@ -82,6 +88,6 @@ export class ContactListComponent{
       }
     });
   }
-  
+
 
 }

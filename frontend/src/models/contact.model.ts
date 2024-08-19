@@ -7,7 +7,7 @@ export interface Contato {
     dataNascimento?: string;
     imageUrl(): string;
   }
-  
+
   export class ContatoMethods implements Contato {
     constructor(
       public id: number,
@@ -17,11 +17,10 @@ export interface Contato {
       public imagem?: string,
       public dataNascimento?: string,
     ) { }
-    
+
     imageUrl(): string {
         var imgName = ''
-        console.log(this.imagem)
-        this.imagem ? imgName = this.imagem.replace('backend/uploads/',''): imgName = ''
+        this.imagem?.includes('backend/uploads/') ? imgName = this.imagem.replace('backend/uploads/',''): imgName = ''
       return `http://localhost:4200/media/${imgName}`;
     }
   }

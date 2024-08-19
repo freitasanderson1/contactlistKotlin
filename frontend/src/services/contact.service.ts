@@ -36,7 +36,6 @@ export class ContatoService {
 
     if (contato.dataNascimento) {
       contato.dataNascimento = new Date(contato.dataNascimento).toISOString().split('T')[0];
-
       formData.append('dataNascimento', contato.dataNascimento);
     }
 
@@ -51,21 +50,15 @@ export class ContatoService {
     formData.append('email', contato.email);
     formData.append('telefone', contato.telefone);
 
-    console.log(contato.imagem)
     if (contato.imagem) {
       formData.append('imagem', contato.imagem);
-
     }
 
     if (contato.dataNascimento) {
-      console.log(contato.dataNascimento)
       contato.dataNascimento = new Date(contato.dataNascimento).toISOString().split('T')[0];
-      console.log(contato.dataNascimento)
-
       formData.append('dataNascimento', contato.dataNascimento);
     }
 
-    console.log(formData)
     return this.http.put<Contato>(`${this.apiUrl}/${id}`, formData).pipe(
       map(contato => this.toContatoMethods(contato))
     );
@@ -81,7 +74,8 @@ export class ContatoService {
       contato.nome,
       contato.email,
       contato.telefone,
-      contato.imagem || ''
+      contato.imagem || '',
+      contato.dataNascimento || '',
     );
   }
 }

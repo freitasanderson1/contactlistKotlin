@@ -26,8 +26,12 @@ class ContatoService(private val contatoRepository: ContatoRepository) {
         }
     }
 
-    fun createContato(nome: String, email: String, telefone: String, dataNascimento: LocalDate?, imagem: String?): Contato {
-        println("Data: {dataNascimento}")
+    fun createContato(nome: String, email: String, telefone: String, dataNascimento: LocalDate?, imagem: String?): Contato? {
+//        println("Data: ${dataNascimento::class.simpleName} - ${telefone}")
+        val existingContato = contatoRepository.findByTelefone(telefone)
+        if (existingContato.isPresent) {
+            throw IllegalArgumentException("Contato com telefone $telefone já existe.")
+        }
         val contato = Contato(
             nome = nome,
             email = email,
@@ -39,14 +43,18 @@ class ContatoService(private val contatoRepository: ContatoRepository) {
         return contatoRepository.save(contato)
     }
     fun updateContato(id: Long, updatedContato: Contato): Contato? {
-        val existingContato: Optional<Contato> = contatoRepository.findById(id)
+        println("Data: ${updatedContato.dataNascimento} - ${updatedContato.telefone}")
+        val existingContato = contatoRepository.findById(id)
         return if (existingContato.isPresent) {
             val contato = existingContato.get()
             contato.nome = updatedContato.nome
             contato.email = updatedContato.email
             contato.telefone = updatedContato.telefone
             contato.dataNascimento = updatedContato.dataNascimento
-            contato.imagem = updatedContato.imagem
+
+            if(!updatedContato.imagem.isNullOrEmpty()){
+                contato.imagem = updatedContato.imagem
+            }
             return contatoRepository.save(contato)
         } else {
             null
