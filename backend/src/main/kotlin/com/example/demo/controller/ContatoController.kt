@@ -49,6 +49,8 @@ class ContatoController(private val contatoService: ContatoService) {
         return try {
             val novoContato = contatoService.createContato(nome, email, telefone, dataNascimento, imagem?.let{ saveImage(it)})
             ResponseEntity.status(HttpStatus.CREATED).body(novoContato)
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null)
         } catch (e: Exception) {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }

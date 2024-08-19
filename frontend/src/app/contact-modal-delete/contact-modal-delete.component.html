@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Confirmar Exclusão</h1>
+<div mat-dialog-content>
+  <p>Tem certeza de que deseja excluir este contato?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="btn-primary" (click)="onNoClick($event)">Cancelar</button>
+  <button mat-button class="btn-danger" (click)="deleteContact($event)">Excluir</button>
+</div>

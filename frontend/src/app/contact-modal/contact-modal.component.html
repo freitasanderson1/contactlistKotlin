@@ -2,8 +2,8 @@
 <mat-dialog-content>
   <form #contactForm="ngForm">
     <div *ngIf="contact.id">
-      <div class="contact-image" *ngIf="contact.imagem">
-        <img [src]="contact.imagem" alt="Imagem do contato"/>
+      <div class="contact-image" *ngIf="imgSrc">
+        <img [src]="imgSrc" alt="Imagem do contato"/>
       </div>
       <mat-form-field appearance="fill">
         <input matInput [(ngModel)]="contact.id" name="id" readonly />
@@ -12,22 +12,22 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="contact.nome" name="nome" />
+      <input matInput [(ngModel)]="contact.nome" [ngModelOptions]="{standalone: true}" name="nome" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="contact.email" name="email" />
+      <input matInput [(ngModel)]="contact.email" [ngModelOptions]="{standalone: true}" name="email" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Telefone</mat-label>
-      <input matInput [(ngModel)]="contact.telefone" name="telefone" />
+      <input matInput [(ngModel)]="contact.telefone" [ngModelOptions]="{standalone: true}" name="telefone" />
     </mat-form-field>
 
     <div class="form-group">
       <label for="dataNascimento">Data de Nascimento</label>
-      <input type="date" id="dataNascimento" [(ngModel)]="contact.dataNascimento" class="date-input">
+      <input type="date" id="dataNascimento" [(ngModel)]="contact.dataNascimento" [ngModelOptions]="{standalone: true}" class="date-input">
     </div>
 
     <div class="upload-image">
@@ -37,6 +37,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onSave()">Salvar</button>
-  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button class="save-contato" (click)="onSave($event)">Salvar</button>
+  <button class="cancel-contato" (click)="onCancel($event)">Cancelar</button>
 </mat-dialog-actions>
