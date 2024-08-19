@@ -57,8 +57,18 @@ class ContatoController(private val contatoService: ContatoService) {
         }
     }
 
-    @PutMapping("/{id}") // PUT /api/contatos/{id}
-    fun atualizarContato(@PathVariable id: Long, @RequestBody contato: Contato): ResponseEntity<Contato> {
+    @PutMapping("/{id}")
+    fun atualizarContato(
+        @PathVariable id: Long,
+        @RequestParam("nome") nome: String,
+        @RequestParam("email") email: String,
+        @RequestParam("telefone") telefone: String,
+        @RequestParam("imagem") imagem: MultipartFile?
+    ): ResponseEntity<Contato> {
+        val imagemPath = imagem?.let{ saveImage(it)}
+
+        val contato = Contato(id, nome, email, telefone, imagemPath)
+
         val contatoAtualizado = contatoService.updateContato(id, contato)
         return if (contatoAtualizado != null) {
             ResponseEntity.ok(contatoAtualizado)
