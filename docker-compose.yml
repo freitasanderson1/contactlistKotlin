@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=anderson
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=contactlist
+      - POSTGRES_PORT="5432"
+      - POSTGRES_HOST="localhost"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  sgbd:
+    image: dpage/pgadmin4
+    ports:
+      - "5433:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: freitas.dev@proton.me
+      PGADMIN_DEFAULT_PASSWORD: password123
+volumes:
+  postgres_data:
