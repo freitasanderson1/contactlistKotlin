@@ -25,20 +25,18 @@ export class ContactModalDeleteComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.contact = data.contact || {};
+    console.log(`Esta aqui: ${this.contact.id}`)
   }
-  onNoClick(event: Event): void {
+  onNoClick(): void {
     this.dialogRef.close(false);
   }
 
   deleteContact(event: Event) {
     event.stopPropagation();
-
-    console.log(`Contato: ${this.contact.nome}`)
-    this.contatoService.deleteContato(this.contact.id).subscribe(response => {
-      this.dialogRef.close(false);
-
+    console.log(this.contact.nome)
+    this.contatoService.deleteContato(this.contact.id).subscribe(() => {
     }, error => {
-      console.error('Erro ao criar contato:', error);
+      console.error('Erro ao excluir contato:', error);
     });
   }
 

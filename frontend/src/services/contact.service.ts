@@ -25,7 +25,9 @@ export class ContatoService {
   }
 
   addContato(contato: Contato): Observable<ContatoMethods> {
+    console.trace("Passei aqui")
     const formData = new FormData();
+
     formData.append('nome', contato.nome);
     formData.append('email', contato.email);
     formData.append('telefone', contato.telefone);
@@ -36,6 +38,7 @@ export class ContatoService {
 
     if (contato.dataNascimento) {
       contato.dataNascimento = new Date(contato.dataNascimento).toISOString().split('T')[0];
+
       formData.append('dataNascimento', contato.dataNascimento);
     }
 
@@ -59,6 +62,7 @@ export class ContatoService {
       formData.append('dataNascimento', contato.dataNascimento);
     }
 
+    console.log(formData)
     return this.http.put<Contato>(`${this.apiUrl}/${id}`, formData).pipe(
       map(contato => this.toContatoMethods(contato))
     );

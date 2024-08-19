@@ -2,7 +2,7 @@
   margin: 10px 0;
   display: flex;
   align-items: center;
-  
+
   input {
     flex: 1;
     padding: 8px;
@@ -10,7 +10,7 @@
     border-radius: 4px;
     margin-right: 10px;
   }
-  
+
   button {
     padding: 8px 12px;
     margin-inline: 0.25rem;
@@ -20,7 +20,7 @@
     color: #fff;
     font-weight: 500;
     cursor: pointer;
-    
+
     &:hover {
       background-color: #0056b3;
     }
@@ -29,13 +29,13 @@
 
 .contact-list {
   list-style-type: none;
-  padding-inline: 20rem;
+  padding-inline: 30rem;
   padding-block: 10rem;
   margin: 0;
-  
+
   li {
     margin-bottom: 10px;
-    
+
     .contact-card {
       display: flex;
       align-items: center;
@@ -44,7 +44,7 @@
       padding: 10px;
       background: #fff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      
+
       .contact-image {
         border-radius: 50%;
         width: 80px;
@@ -52,18 +52,18 @@
         object-fit: cover;
         margin-right: 15px;
       }
-      
+
       .contact-details {
         flex: 1;
-        
+
         h2 {
           margin: 0;
           font-size: 1.2em;
         }
-        
+
         p {
           margin: 5px 0;
-          
+
           strong {
             font-weight: bold;
           }
@@ -82,7 +82,7 @@
   color: #fff;
   font-weight: 500;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #0056b3;
   }
@@ -97,7 +97,7 @@
   color: #fff;
   font-weight: 500;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #b30000;
   }

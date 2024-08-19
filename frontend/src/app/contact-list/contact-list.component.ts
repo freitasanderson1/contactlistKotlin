@@ -45,11 +45,12 @@ export class ContactListComponent{
   search(): void {
     this.loadContatos(this.searchQuery);
   }
-  openDeleteDialog(contact?: ContatoMethods): void {
+  openDeleteDialog(contato: any): void {
     const dialogRef = this.dialog.open(ContactModalDeleteComponent, {
       width: '500px',
-      data: { contact: contact }
+      data: { contact: contato }
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (result.id) {
