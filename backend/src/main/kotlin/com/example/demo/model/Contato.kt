@@ -1,5 +1,8 @@
 package com.example.demo.model
 
+import java.time.LocalDate
+import org.springframework.format.annotation.DateTimeFormat
+
 import jakarta.persistence.*
 
 @Entity
@@ -10,5 +13,7 @@ data class Contato(
     var nome: String,
     var email: String,
     var telefone: String,
-    var imagem: String? = null
+    var imagem: String? = null,
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    var dataNascimento: LocalDate?,
 )
