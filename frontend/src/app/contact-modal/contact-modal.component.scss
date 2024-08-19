@@ -1,0 +1,88 @@
+mat-form-field {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+mat-dialog-content {
+  padding: 24px;
+}
+
+mat-dialog-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-image{
+  display: flex;
+  justify-content: center;
+  img{
+    max-width: 10rem;
+    padding: 1rem;
+    border-radius: 100px;
+    height: auto;
+    display: block;
+  }
+}
+.upload-image{
+  display: flex;
+  justify-content: center;
+}
+input[type="file"] {
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #0056b3;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .date-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(0.5);
+    }
+  }
+}

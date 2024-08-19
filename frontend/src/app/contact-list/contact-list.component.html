@@ -1,0 +1,21 @@
+<ul class="contact-list">
+
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="search()" placeholder="Buscar contatos...">
+    <button (click)="search()">Buscar</button>
+    <button (click)="openModal()">Adicionar Contato</button>
+  </div>
+  
+  <li *ngFor="let contato of contatos">
+    <div class="contact-card">
+      <img [src]="contato.imageUrl()" alt="{{ contato.nome }}" class="contact-image">
+      <div class="contact-details">
+        <h2>{{ contato.nome }}</h2>
+        <p><strong>Email:</strong> {{ contato.email }}</p>
+        <p><strong>Telefone:</strong> {{ contato.telefone }}</p>
+      </div>
+      <button class="delete-contato" mat-button (click)="deleteContact(contato.id)">Apagar</button>
+      <button class="edit-contato" mat-button (click)="editContato(contato)">Editar</button>
+    </div>
+  </li>
+</ul>
