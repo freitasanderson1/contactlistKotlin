@@ -38,4 +38,4 @@ out/
 
 ### Kotlin ###
 .kotlin
-backend/uploads/** */
+backend/uploads/**
